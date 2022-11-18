@@ -26,21 +26,21 @@ public class Main {
 		long tempoInicial = System.currentTimeMillis();//conta o tempo em que a execução começou
 		switch(funcao) {
 			case 1: 
-				metodo = "HeapSort";
+				metodo = "Tentativa Linear";
 				operacoes = avl.colisao(v);
 				break;
 			case 2: 
-				metodo = "IntroSort";
+				metodo = "Lista Encadeada";
 //				System.out.println("intro");
 //				operacoes = i.sort(v, ordem);
 				break;
 			case 3: 
-				metodo = "MergeSort";
+				metodo = "árvore AVL";
 				//System.out.println("tree");
 //				operacoes = m.sort(v,ordem);
 				break;
 			case 4: 
-				metodo = "QuickSort";
+				metodo = "árvore Rubro-Negra";
 				//System.out.println("quick");
 //				operacoes = q.sort(v, ordem);
 				break;

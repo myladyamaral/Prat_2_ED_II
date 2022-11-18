@@ -1,19 +1,22 @@
 package arvores;
 
-public class AVLTree<Key extends Comparable<Key>, Item> {
+import entidades.Dicionario;
+import entidades.Item;
+
+public class AVLTree<K extends Comparable<K>, V> implements Dicionario<K, V>{
 	public int colisao(Item[] itens) {
 		int size = itens.length;
 		return 0;
 	}
     private class Node {
-        Key chave;
+        K chave;
         Item item;
         Node esq, dir;
 
         int altura;
         int tamanho;
 
-        Node(Key chave, Item item, int tamanho, int altura) {
+        Node(K chave, Item item, int tamanho, int altura) {
             this.chave = chave;
             this.item = item;
 
@@ -73,7 +76,7 @@ public class AVLTree<Key extends Comparable<Key>, Item> {
     	//IMPLEMENTAR
     }
 
-    public void put(Key chave, Item item) {
+    public void put(K chave, Item item) {
         if (chave == null) {
             return;
         }
@@ -86,7 +89,7 @@ public class AVLTree<Key extends Comparable<Key>, Item> {
         raiz = put(raiz, chave, item);
     }
 
-    private Node put(Node no, Key chave, Item item) {
+    private Node put(Node no, K chave, Item item) {
         if (no == null) {
             return new Node(chave, item, 1, 0);
         }
@@ -136,7 +139,7 @@ public class AVLTree<Key extends Comparable<Key>, Item> {
     	return 0;
     }
 
-    public Item get(Key chave) {
+    public Item get(K chave) {
         if (chave == null) {
             return null;
         }
@@ -144,7 +147,7 @@ public class AVLTree<Key extends Comparable<Key>, Item> {
         return get(raiz, chave);
     }
 
-    private Item get(Node no, Key chave) {
+    private Item get(Node no, K chave) {
         if (no == null) {
             return null;
         }
@@ -159,7 +162,7 @@ public class AVLTree<Key extends Comparable<Key>, Item> {
         }
     }
 
-    public boolean contains(Key chave) {
+    public boolean contains(K chave) {
         if (chave == null) {
             throw new IllegalArgumentException("Argument to contains() cannot be null");
         }
@@ -168,7 +171,7 @@ public class AVLTree<Key extends Comparable<Key>, Item> {
 
   
 
-    public void delete(Key chave) {
+    public void delete(K chave) {
     }
     	
 
@@ -188,5 +191,8 @@ public class AVLTree<Key extends Comparable<Key>, Item> {
 
         return isAVL(no.esq) && isAVL(no.dir);
     }
+
+
+
 
 }
