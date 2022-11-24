@@ -18,7 +18,7 @@ public class LerArquivo extends JFrame{
 
 	public Item[] abrirArquivo(){
 		
-		JFileChooser arq = new JFileChooser("C:");
+		JFileChooser arq = new JFileChooser("C:\\arquivos");
 		FileNameExtensionFilter filtro = new FileNameExtensionFilter("Arquivos de texto", "txt", "csv");
 		arq.setFileFilter((javax.swing.filechooser.FileFilter) filtro);
 		//acionando o filtro que faz aparecer a caixa de dialogo
@@ -26,7 +26,7 @@ public class LerArquivo extends JFrame{
 		arq.setDialogTitle("Selecione um arquivo...");
 		arq.showOpenDialog(new JFrame("")); 
 		arq.setVisible (true);
-		String endereco = arq.getSelectedFile().getAbsolutePath(); //Coleta de Endereço
+		String endereco = arq.getSelectedFile().getAbsolutePath(); //Coleta de Endereï¿½o
 		File arquivo = new File(endereco);
 		
 		System.out.println("String");
@@ -36,7 +36,7 @@ public class LerArquivo extends JFrame{
 					
 	public Item[] ler(String endereco, File arquivo){
 		
-		int numL = numLinhasArquivo(endereco);//Método definido para saber qual será o tamanho do vetor
+		int numL = numLinhasArquivo(endereco);//Mï¿½todo definido para saber qual serï¿½ o tamanho do vetor
 		Item[] vetor = new Item[numL];
 		
 		if (arquivo.canRead()) {
@@ -52,14 +52,16 @@ public class LerArquivo extends JFrame{
 					
 	                String chave = vect[0];
 	                String valor = vect[1];
-	                key = new Item(chave, valor);
+	                String valor1 = vect[2];
+	                String valor2 = vect[3];
+	                key = new Item(chave, valor,valor1,valor2);
 	                vetor[i++] = key;//adicionando a chave ao vetor
 
 					line = br.readLine();
 					
 				}
 			}
-			catch (IOException e) { // trata as exceções do tipo FileNotFoundException   
+			catch (IOException e) { // trata as exceï¿½ï¿½es do tipo FileNotFoundException   
 		        System.out.println(e.getMessage());;   
 		    }
 				
@@ -83,7 +85,7 @@ public class LerArquivo extends JFrame{
 	}		
 	
 
-	public int numLinhasArquivo(String endereco) {//função necessaria para inicializar o vetor
+	public int numLinhasArquivo(String endereco) {//funï¿½ï¿½o necessaria para inicializar o vetor
 		int numLin = 0;
 		try {		
 			Scanner arq = new Scanner (new File (endereco));	      
@@ -92,7 +94,7 @@ public class LerArquivo extends JFrame{
 	        	numLin ++;
 	        }
 		}
-		catch (IOException e) { // trata as exceções do tipo FileNotFoundException   
+		catch (IOException e) { // trata as exceï¿½ï¿½es do tipo FileNotFoundException   
 	        System.out.println(e.getMessage());;   
 	    }
 		return numLin;

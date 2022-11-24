@@ -1,24 +1,21 @@
 package arvores;
 
-import entidades.Dicionario;
-import entidades.Item;
+import entidades.*;
 
 public class AVLTree<K extends Comparable<K>, V> implements Dicionario<K, V>{
-	public int colisao(Item[] itens) {
-		int size = itens.length;
-		return 0;
-	}
+	
+	
     private class Node {
         K chave;
-        Item item;
+        V valor;
         Node esq, dir;
 
         int altura;
         int tamanho;
 
-        Node(K chave, Item item, int tamanho, int altura) {
+        Node(K chave, V valor, int tamanho, int altura) {
             this.chave = chave;
-            this.item = item;
+            this.valor = valor;
 
             this.tamanho = tamanho;
             this.altura = altura;
@@ -26,6 +23,8 @@ public class AVLTree<K extends Comparable<K>, V> implements Dicionario<K, V>{
     }
 
     private Node raiz;
+    
+ 
 
     public int tamanho() {
         return tamanho(raiz);
@@ -38,6 +37,7 @@ public class AVLTree<K extends Comparable<K>, V> implements Dicionario<K, V>{
 
         return no.tamanho;
     }
+    
 
     public int altura() {
         return altura(raiz);
@@ -76,32 +76,32 @@ public class AVLTree<K extends Comparable<K>, V> implements Dicionario<K, V>{
     	//IMPLEMENTAR
     }
 
-    public void put(K chave, Item item) {
+    public void put(K chave, V valor) {
         if (chave == null) {
-            return;
+            
         }
 
-        if (item == null) {
+        if (valor == null) {
             delete(chave);
-            return;
+            
         }
 
-        raiz = put(raiz, chave, item);
+        raiz = put(raiz, chave, valor);
     }
 
-    private Node put(Node no, K chave, Item item) {
+    private Node put(Node no, K chave, V valor) {
         if (no == null) {
-            return new Node(chave, item, 1, 0);
+            return new Node(chave, valor, 1, 0);
         }
 
         int compare = chave.compareTo(no.chave);
 
         if (compare < 0) {
-            no.esq = put(no.esq, chave, item);
+            no.esq = put(no.esq, chave, valor);
         } else if (compare > 0) {
-            no.dir = put(no.dir, chave, item);
+            no.dir = put(no.dir, chave, valor);
         } else {
-            no.item = item;
+            no.valor = valor;
         }
 
         no.altura = 1 + Math.max(altura(no.esq), altura(no.dir));
@@ -135,11 +135,14 @@ public class AVLTree<K extends Comparable<K>, V> implements Dicionario<K, V>{
      * RETORNAR O FATOR DE BALANCEMANETO
      */
     private int fatorBalanceamento(Node no) {
-        //IMPLEMENTAR
-    	return 0;
+    	if (no == null)
+            return 0;
+ 
+        return altura(no.esq) - altura(no.dir);
+    	
     }
 
-    public Item get(K chave) {
+    public String get(K chave) {
         if (chave == null) {
             return null;
         }
@@ -147,7 +150,7 @@ public class AVLTree<K extends Comparable<K>, V> implements Dicionario<K, V>{
         return get(raiz, chave);
     }
 
-    private Item get(Node no, K chave) {
+    private String get(Node no, K chave) {
         if (no == null) {
             return null;
         }
@@ -158,7 +161,7 @@ public class AVLTree<K extends Comparable<K>, V> implements Dicionario<K, V>{
         } else if (compare > 0) {
             return get(no.dir, chave);
         } else {
-            return no.item;
+            return no.valor.toString();
         }
     }
 
@@ -192,7 +195,34 @@ public class AVLTree<K extends Comparable<K>, V> implements Dicionario<K, V>{
         return isAVL(no.esq) && isAVL(no.dir);
     }
 
+    void preOrder(Node node) {
+        if (node != null) {
+        	System.out.print(node.chave + " - "+node.valor+"\n");
+            preOrder(node.esq);
+            preOrder(node.dir);
+        }
 
 
-
+    }
+    
+    public int colisao(int tam, Item[] itens) {
+ 		AVLTree tree = new AVLTree();
+ 		
+ 		for(int i = 0; i<=itens.length-1;i++) {
+ 			if(i>=(tam*95/100)) {
+ //cria nova arvore e copia os elementos da antiga para a nova e apaga a antiga				
+// 				AVLTree tree1 = new AVLTree();
+ 				System.out.println("ULTRAPASSOU 95%");
+ 			}
+ 			else {
+ 				String chave = itens[i].getChave();
+ 				tree.raiz = tree.put(tree.raiz, chave, itens[i]);
+ 			}
+ 		}
+ 		
+ 		System.out.println("TESTE");
+ 		tree.preOrder(tree.raiz);
+ 		return 0;
+ 	}
+    
 }

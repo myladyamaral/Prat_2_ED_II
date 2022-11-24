@@ -2,15 +2,23 @@ package entidades;
 
 public class Item implements Comparable<Item>{
 
+	@Override
+	public String toString() {
+		return "Item [chave=" + chave + ", valor=" + valor + ", valor1=" + valor1 + ", valor2=" + valor2 + "]";
+	}
+
+
 	private String chave;
 	private String valor;
 	private String valor1;
 	private String valor2;
 	
-	public Item(String chave, String valor) {
+	public Item(String chave, String valor,String valor1, String valor2) {
 		super();
 		this.chave = chave;
 		this.valor = valor;
+		this.valor1 = valor1;
+		this.valor2 = valor2;
 	}
 
 
@@ -55,7 +63,7 @@ public class Item implements Comparable<Item>{
 
 	public int compareTo(Item C) {
 		Item aux = C;
-		//aux.getChave().toUpperCase(); //Para trabalhar somente com maiúsculas
+		//aux.getChave().toUpperCase(); //Para trabalhar somente com maiï¿½sculas
 		
 		int tamStr1 = this.getChave().length();
 		int tamStr2 = aux.getChave().length();
@@ -81,11 +89,6 @@ public class Item implements Comparable<Item>{
 	}
 
 
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return chave+"\t"+valor+"\t"+valor1+"\t"+valor2;
-	}
 	
 	
 	

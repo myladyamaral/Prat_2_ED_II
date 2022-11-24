@@ -1,0 +1,50 @@
+
+// HashTentativaLinear
+public V get(K chave) {
+
+//		for (int i = hash(chave); chaves[i] != null; i = (i + 1) % M) {
+//		System.out.println("Key busca: " + chave + "\nchave vetor" + chaves[hash(chave)] + "\nhashchave: " + hash(chave));
+//		if (chaves[hash(chave)] != null && chaves[hash(chave)].equals(chave)) {
+//			System.out.println("Entrou no if do get: " + vals[hash(chave)]);
+//			return vals[hash(chave)];
+//		}
+//			if(chaves[i].toString().compareTo(chave.toString())==0) {
+//				System.out.println("vals: "+vals[i]);
+//				return vals[i];
+//			}
+//		}
+
+		return null;
+	}
+	
+	/**
+	 * Insere um novo objeto no Hash
+	 * 
+	 * @param chave
+	 * @param val
+	 */
+	@Override
+	public void insert(K chave, V val) {
+		int i;
+		if (N >= M / 2)
+			resize(2 * M); // double M
+		V ob = get(chave);
+		System.out.println("get: " + ob);
+
+		if (ob == null) {
+			for (i = hash(chave); chaves[i] != null; i = (i + 1) % M) {
+//				if (chaves[i].equals(chave)) { 
+//					vals[i] = val; 
+//					return; 
+//					}
+			}
+			chaves[i] = chave;
+			vals[i] = val;
+			N++;
+		} else {
+			// chaves[hash(chave)] = chave;
+			vals[hash(chave)] = (V) "AAAAAAAAAAAA";
+		}
+	}
+	
+// HashTentativaLinear
