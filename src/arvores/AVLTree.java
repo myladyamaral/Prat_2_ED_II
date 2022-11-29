@@ -4,7 +4,14 @@ import entidades.*;
 
 public class AVLTree<K extends Comparable<K>, V> implements Dicionario<K, V>{
 	
+<<<<<<< Updated upstream
 	
+=======
+	public int colisao(Item[] itens) {
+		int size = itens.length;
+		return 0;
+	}
+>>>>>>> Stashed changes
     private class Node {
         K chave;
         V valor;
